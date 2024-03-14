@@ -27,12 +27,22 @@ export class CartServiceService {
 
   itemQuantityDecrease(item: Item): void {
     const existingItem = this.findItem(item);
-    if (existingItem) existingItem.quantity = (existingItem.quantity || 0) - 1;
+    if (existingItem && existingItem.quantity && existingItem.quantity > 1) {
+      existingItem.quantity = (existingItem.quantity || 0) - 1;
+    } else {
+      this.removeItemfromCart(item);
+    }
   }
 
   itemQuantityIncrease(item: Item): void {
     const existingItem = this.findItem(item);
     if (existingItem) existingItem.quantity = (existingItem.quantity || 0) + 1;
+  }
+
+  removeItemfromCart(item: Item): void {
+    console.log('in remove');
+    this.cartItems = this.cartItems.filter((i) => i.id !== item.id).slice();
+    console.log(this.cartItems);
   }
 
   //helper
