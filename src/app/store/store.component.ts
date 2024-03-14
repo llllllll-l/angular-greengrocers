@@ -9,7 +9,8 @@ import { CartServiceService } from '../services/cart-service.service';
   styleUrls: ['./store.component.css'],
 })
 export class StoreComponent implements OnInit {
-  items: Item[] = [];
+  apiResponseItems: Item[] = [];
+  filteredItems: Item[] = [];
 
   constructor(
     private readonly itemService: ItemServiceService,
@@ -21,12 +22,35 @@ export class StoreComponent implements OnInit {
   }
 
   async loadItems() {
-    console.log('Hello');
-    this.items = await this.itemService.loadItems();
+    this.apiResponseItems = await this.itemService.loadItems();
+    this.filteredItems = this.apiResponseItems;
   }
 
   addToCart(item: Item) {
-    console.log(item);
     this.cartService.addToCart(item);
+  }
+
+  filterFruits() {
+    this.filtering('fruits');
+  }
+
+  filterVegetables() {
+    this.filtering('vegetables');
+  }
+
+  removeFiltering() {
+    this.loadItems();
+  }
+
+  private filtering(filteringBy: string) {
+    if (filteringBy === 'fruits') {
+      this.filteredItems = this.apiResponseItems.filter(
+        (i) => i.type === 'fruit'
+      );
+    } else if (filteringBy === 'vegetables') {
+      this.filteredItems = this.apiResponseItems.filter(
+        (i) => i.type === 'vegetable'
+      );
+    }
   }
 }

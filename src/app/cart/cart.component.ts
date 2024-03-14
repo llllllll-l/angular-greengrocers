@@ -17,13 +17,11 @@ export class CartComponent implements OnInit {
   }
 
   itemQuantityDecrease(item: Item) {
-    console.log('decrease by one');
     this.cartService.itemQuantityDecrease(item);
     this.ngOnInit(); // <-- since the item may have been removed from the array
   }
 
   itemQuantityIncrease(item: Item) {
-    console.log('increase by one');
     this.cartService.itemQuantityIncrease(item);
   }
 }

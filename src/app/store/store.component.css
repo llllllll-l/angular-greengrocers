@@ -1,0 +1,10 @@
+.filtering {
+  justify-content: center;
+  display: flex;
+}
+
+button {
+  border-radius: 7px;
+  padding: 10px;
+  margin: 10px;
+}
