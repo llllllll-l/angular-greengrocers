@@ -1,5 +1,8 @@
 <div class="cart--item-list-container">
-  <ul class="item-list cart--item-list">
+  <ul
+    class="item-list cart--item-list"
+    *ngIf="cartItems.length > 0; else cartEmpty"
+  >
     <li *ngFor="let item of cartItems">
       <img
         class="cart--item-icon"
@@ -23,3 +26,7 @@
     </li>
   </ul>
 </div>
+
+<ng-template #cartEmpty>
+  <p>Cart is empty</p>
+</ng-template>
