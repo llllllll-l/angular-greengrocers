@@ -15,4 +15,14 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
   }
+
+  itemQuantityDecrease(item: Item) {
+    console.log('decrease by one');
+    this.cartService.itemQuantityDecrease(item);
+  }
+
+  itemQuantityIncrease(item: Item) {
+    console.log('increase by one');
+    this.cartService.itemQuantityIncrease(item);
+  }
 }

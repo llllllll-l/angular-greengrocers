@@ -15,7 +15,7 @@ export class CartServiceService {
 
   addToCart(item: Item): void {
     // check to see if the item is already in the cart
-    const existingItem = this.cartItems.find((i) => i.id === item.id);
+    const existingItem = this.findItem(item);
 
     if (!existingItem) {
       this.cartItems.push({ ...item, quantity: 1 });
@@ -23,5 +23,21 @@ export class CartServiceService {
       // can not write "++" since quantity may not exists
       existingItem.quantity = (existingItem.quantity || 0) + 1;
     }
+  }
+
+  itemQuantityDecrease(item: Item): void {
+    const existingItem = this.findItem(item);
+    if (existingItem) existingItem.quantity = (existingItem.quantity || 0) - 1;
+  }
+
+  itemQuantityIncrease(item: Item): void {
+    const existingItem = this.findItem(item);
+    if (existingItem) existingItem.quantity = (existingItem.quantity || 0) + 1;
+  }
+
+  //helper
+  findItem(item: Item): Item | undefined {
+    const existingItem = this.cartItems.find((i) => i.id === item.id);
+    return existingItem;
   }
 }

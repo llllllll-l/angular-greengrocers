@@ -6,10 +6,20 @@
         src="assets/icons/{{ item.id }}.svg"
         alt="{{ item.name }}"
       />
-      <p>beetroot</p>
-      <button class="quantity-btn remove-btn center">-</button>
+      <p>{{ item.name }}</p>
+      <button
+        class="quantity-btn remove-btn center"
+        (click)="itemQuantityDecrease(item)"
+      >
+        -
+      </button>
       <span class="quantity-text center">{{ item.quantity }}</span>
-      <button class="quantity-btn add-btn center">+</button>
+      <button
+        class="quantity-btn add-btn center"
+        (click)="itemQuantityIncrease(item)"
+      >
+        +
+      </button>
     </li>
   </ul>
 </div>
