@@ -38,6 +38,10 @@ export class StoreComponent implements OnInit {
     this.filtering('vegetables');
   }
 
+  filterByName() {
+    this.filtering('alphabet');
+  }
+
   removeFiltering() {
     this.loadItems();
   }
@@ -51,6 +55,8 @@ export class StoreComponent implements OnInit {
       this.filteredItems = this.apiResponseItems.filter(
         (i) => i.type === 'vegetable'
       );
+    } else if (filteringBy === 'alphabet') {
+      this.filteredItems.sort((a, b) => a.name.localeCompare(b.name));
     }
   }
 }
