@@ -57,7 +57,6 @@ export class CartServiceService {
   // helper
   private removeItemfromCart(item: Item): void {
     this.cartItems = this.cartItems.filter((i) => i.id !== item.id).slice();
-    console.log(this.cartItems);
   }
 
   // helper
